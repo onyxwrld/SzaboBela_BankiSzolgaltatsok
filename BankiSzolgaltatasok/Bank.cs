@@ -10,6 +10,8 @@ namespace BankiSzolgaltatasok
 	public class Bank
 	{
 		List<Szamla> list_Szamla = new List<Szamla>();
+
+		public long OsszHitelkeret { get; }
 		public long GetOsszEgyenleg(Tulajdonos tulajdonos)
 		{
 			long a = 0;
@@ -41,6 +43,11 @@ namespace BankiSzolgaltatasok
 				list_Szamla.Add(szamla);
 				return szamla;
 			}
+		}
+		public Szamla GetLegnagyobbEgyenleguSzamla(Tulajdonos tulajdonos)
+		{
+			return null;
+
 		}
 	}
 }

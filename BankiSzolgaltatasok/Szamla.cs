@@ -9,7 +9,7 @@ namespace BankiSzolgaltatasok
 {
 	public abstract class Szamla: BankiSzolgaltatas
 	{
-		private int aktualisEgyenleg;
+		protected int aktualisEgyenleg;
 
 		public Szamla(Tulajdonos tulajdonos): base(tulajdonos)
 		{
