@@ -31,7 +31,7 @@ namespace BankiSzolgaltatasok
 		public abstract bool Kivesz(int osszeg);
 		public Kartya UjKartya(string kartyaSzam)
 		{
-			return new Kartya(TulajdonosNev,this,kartyaSzam);
+			return new Kartya(Tulajdonos,this,kartyaSzam);
 		}
 
 	}
