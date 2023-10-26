@@ -11,7 +11,18 @@ namespace BankiSzolgaltatasok
 	{
 		List<Szamla> list_Szamla = new List<Szamla>();
 
-		public long OsszHitelkeret { get; }
+		public long OsszHitelkeret { get
+            {
+				long ossz = 0;
+                foreach (var item in list_Szamla)
+                {
+                    if (item.GetType() == typeof(HitelSzamla))
+                    {
+						ossz += ((HitelSzamla)item).HitelKeret;
+                    }
+                }
+				return ossz;
+            } }
 		public long GetOsszEgyenleg(Tulajdonos tulajdonos)
 		{
 			long a = 0;
@@ -24,18 +35,13 @@ namespace BankiSzolgaltatasok
 			}
 			return a;
 		}
+
 		public Szamla SzamlaNyitas(Tulajdonos tulajdonos, int hitelKeret)
 		{
 			Szamla szamla;
 			if (hitelKeret < 0)
 			{
-				throw new Exception(nameof(hitelKeret) + " Rossz ertek");
-			}
-			else if (hitelKeret == 0)
-			{
-				szamla = new MegtakaritasiSzamla(tulajdonos);
-				list_Szamla.Add(szamla);
-				return szamla;
+				throw new ArgumentException("hibas");
 			}
 			else
 			{
@@ -46,8 +52,15 @@ namespace BankiSzolgaltatasok
 		}
 		public Szamla GetLegnagyobbEgyenleguSzamla(Tulajdonos tulajdonos)
 		{
-			return null;
-
-		}
+			Szamla max = list_Szamla[0];
+            foreach (Szamla item in list_Szamla)
+            {
+                if (item.AktualisEgyenleg > max.AktualisEgyenleg && item.Tulajdonos.Equals(tulajdonos))
+                {
+					max = item;
+                }
+            }
+            return max;
+        }
 	}
 }
