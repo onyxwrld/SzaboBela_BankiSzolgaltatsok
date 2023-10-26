@@ -19,25 +19,16 @@ namespace BankiSzolgaltatasok
 
 		public override bool Kivesz(int osszeg)
 		{
-			int akt = AktualisEgyenleg;
-			if (akt>0)
-            {
-				 akt-= osszeg;
+			if (this.aktualisEgyenleg - osszeg >= 0 && osszeg <= hitelKeret)
+			{
+				this.aktualisEgyenleg -= osszeg;
 				return true;
 			}
 			else
 			{
-				if (hitelKeret>0)
-				{
-					hitelKeret -= osszeg;
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				return false;
 			}
-            
+
 		}
 	}
 }

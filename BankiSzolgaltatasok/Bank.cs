@@ -24,12 +24,12 @@ namespace BankiSzolgaltatasok
 			}
 			return a;
 		}
-		public Szamla SzamlaNyitas(Tulajdonos tulajdonos,int hitelKeret)
+		public Szamla SzamlaNyitas(Tulajdonos tulajdonos, int hitelKeret)
 		{
 			Szamla szamla;
-			if (hitelKeret<0)
+			if (hitelKeret < 0)
 			{
-				throw new Exception(nameof(hitelKeret) +  " Rossz ertek");
+				throw new Exception(nameof(hitelKeret) + " Rossz ertek");
 			}
 			else if (hitelKeret == 0)
 			{
@@ -39,7 +39,7 @@ namespace BankiSzolgaltatasok
 			}
 			else
 			{
-				szamla = new HitelSzamla(tulajdonos,hitelKeret);
+				szamla = new HitelSzamla(tulajdonos, hitelKeret);
 				list_Szamla.Add(szamla);
 				return szamla;
 			}

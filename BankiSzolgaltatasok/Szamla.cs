@@ -20,7 +20,7 @@ namespace BankiSzolgaltatasok
 		public void Befizet(int osszeg)
 		{
 			if (osszeg > 0) {
-				aktualisEgyenleg += osszeg;
+				this.aktualisEgyenleg += osszeg;
 			}
 			else
 			{

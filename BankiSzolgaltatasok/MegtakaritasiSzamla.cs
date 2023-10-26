@@ -13,7 +13,7 @@ namespace BankiSzolgaltatasok
 
 		public MegtakaritasiSzamla(Tulajdonos tulajdonos) : base(tulajdonos)
 		{
-			this.Kamat = alapKamat;
+			this.kamat = alapKamat;
 		}
 
 		public double AlapKamat { get => alapKamat; set => alapKamat = value; }
@@ -21,8 +21,9 @@ namespace BankiSzolgaltatasok
 
 		public override bool Kivesz(int osszeg)
 		{
-			if (osszeg>0)
+			if (this.aktualisEgyenleg - osszeg >= 0)
 			{
+				this.aktualisEgyenleg -= osszeg;
 				return true;
 			}
 			else
@@ -32,7 +33,7 @@ namespace BankiSzolgaltatasok
 		}
 		public void KamatJovairas()
 		{
-			kamat = alapKamat * AktualisEgyenleg;
+			this.aktualisEgyenleg = (int)(this.aktualisEgyenleg*kamat);
 		}
 	}
 }

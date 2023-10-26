@@ -21,15 +21,15 @@ namespace BankiSzolgaltatasok
 		public string KartyaSzam { get => kartyaSzam;}
 		public bool Vasarlas(int osszeg)
 		{
-			if (szamla.Kivesz(osszeg))
+			if (this.szamla.AktualisEgyenleg - osszeg >= 0)
 			{
+				szamla.Kivesz(osszeg);
 				return true;
 			}
 			else
 			{
 				return false;
 			}
-			
 		}
 	}
 }
