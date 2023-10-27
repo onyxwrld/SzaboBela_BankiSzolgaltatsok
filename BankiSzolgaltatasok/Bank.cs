@@ -43,21 +43,37 @@ namespace BankiSzolgaltatasok
 			{
 				throw new ArgumentException("hibas");
 			}
-			else
+			else if (hitelKeret > 0)
 			{
 				szamla = new HitelSzamla(tulajdonos, hitelKeret);
 				list_Szamla.Add(szamla);
 				return szamla;
 			}
+            else
+            {
+				szamla = new MegtakaritasiSzamla(tulajdonos);
+				list_Szamla.Add(szamla);
+				return szamla;
+			}
+
 		}
 		public Szamla GetLegnagyobbEgyenleguSzamla(Tulajdonos tulajdonos)
 		{
-			Szamla max = list_Szamla[0];
+
+			List<Szamla> a = new List<Szamla>();
+            foreach (Szamla item in list_Szamla)
+            {
+                if (item.Tulajdonos.Equals(tulajdonos))
+                {
+					a.Add(item);
+                }
+            }
+            Szamla max = a[0];
             foreach (Szamla item in list_Szamla)
             {
                 if (item.AktualisEgyenleg > max.AktualisEgyenleg && item.Tulajdonos.Equals(tulajdonos))
                 {
-					max = item;
+                    max = item;
                 }
             }
             return max;
